@@ -80,20 +80,7 @@ class Workable(object):
         url = self.endpoints['job'] + job + '/candidates/' + candidate_id
         request = requests.get(url,headers=self.request_headers)
         response = request.json()
-        print(json.dumps(response, indent=3))
         return response
-
-    def workable_write_json(self,object,filename):
-        """
-        Save the output from workable to a file. Existing files will be overwritten without warning!
-        :param object: result from calling the workable API, JSON format
-        :param filename: name the file should be saved as, without .json extension
-        """
-        full_name = filename + '.json'
-        open(full_name,'w').close()
-        file = open(full_name,'a',encoding='utf-8')
-        file.write(json.dumps(object,indent=2))
-        return
 
     def job_list(self,state=''):
         """
